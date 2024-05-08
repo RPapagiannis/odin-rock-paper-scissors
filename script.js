@@ -1,20 +1,18 @@
 function getComputerChoice() {
     let computerChoice = Math.floor(Math.random() * 9) + 1;
     if (computerChoice <= 3) {
-        computerChoice = 'rock';
+        return 'rock';
     }
     else if (computerChoice > 3 && computerChoice <= 6) {
-        computerChoice = 'paper';
+        return 'paper';
     }
     else {
-        computerChoice = 'scissors';
+        return 'scissors';
     }
-    return computerChoice;
 }
 
 function getHumanChoice() {
-    let humanChoice = prompt('Rock, Paper, or Scissors?')
-    return humanChoice;
+    return prompt('Rock, Paper, or Scissors?').toLowerCase();
 }
 
 function playRound(computerChoice, humanChoice) {
@@ -62,10 +60,8 @@ let humanScore = 0;
 let computerScore = 0;
 
 while (humanScore < 5 && computerScore < 5) {
-    computerChoice = getComputerChoice();
-    humanChoice = getHumanChoice().toLowerCase();
-    playRound(computerChoice, humanChoice);
-    console.log(`Human: ${humanScore} Computer: ${computerScore}`)
+    playRound(getComputerChoice(), getHumanChoice());
+    console.log(`Computer: ${computerScore} Human: ${humanScore} `)
     if (humanScore === 5) {
         console.log('The human wins the game!')
     }
