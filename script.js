@@ -12,42 +12,59 @@ function getComputerChoice() {
 }
 
 function playRound(computerChoice, humanChoice) {
-    console.log(computerChoice, humanChoice)
+    const results = document.querySelector('.score-box')
+
+    const roundChoices = document.createElement('p');
+    roundChoices.textContent = `human picks: ${humanChoice}, computer picks: ${computerChoice}`
+    results.appendChild(roundChoices);
+
+    const roundResult = document.createElement('p');
+
     if (computerChoice === 'rock' && humanChoice === 'rock') {
-        console.log('Draw!')
+        roundResult.textContent = 'draw!'
+        results.appendChild(roundResult);
     }
     else if (computerChoice == 'rock' && humanChoice == 'paper') {
-        console.log('The humie wins!')
-        return humanScore ++;
+        roundResult.textContent = 'the humie wins!'
+        results.appendChild(roundResult);
+        return humanScore++;
     }
     else if (computerChoice == 'rock' && humanChoice == 'scissors') {
-        console.log('The computer wins!')
-        return computerScore ++;
+        roundResult.textContent = 'the computer wins!'
+        results.appendChild(roundResult);
+        return computerScore++;
     }
     else if (computerChoice == 'paper' && humanChoice == 'rock') {
-        console.log('The computer wins!')
-        return computerScore ++;
+        roundResult.textContent = 'the computer wins!'
+        results.appendChild(roundResult);
+        return computerScore++;
     }
     else if (computerChoice == 'paper' && humanChoice == 'paper') {
-        console.log('Draw!')
+        roundResult.textContent = 'draw'
+        results.appendChild(roundResult);
     }
     else if (computerChoice == 'paper' && humanChoice == 'scissors') {
-        console.log('The humie wins!')
-        return humanScore ++;
+        roundResult.textContent = 'the humie wins!'
+        results.appendChild(roundResult)
+        return humanScore++;
     }
     else if (computerChoice == 'scissors' && humanChoice == 'rock') {
-        console.log('The humie wins!')
-        return humanScore ++;
+        roundResult.textContent = 'the humie wins!'
+        results.appendChild(roundResult)
+        return humanScore++;
     }
     else if (computerChoice == 'scissors' && humanChoice == 'paper') {
-        console.log('The computer wins!')
-        return computerScore ++;
+        roundResult.textContent = 'the computer wins!'
+        results.appendChild(roundResult)
+        return computerScore++;
     }
     else if (computerChoice == 'scissors' && humanChoice == 'scissors') {
-        console.log('Draw!')
+        roundResult.textContent = 'draw!'
+        results.appendChild(roundResult)
     }
     else {
-        console.log('Invalid input')
+        roundResult.textContent = 'invalid input!'
+        results.appendChild(roundResult)
     }
 }
 
@@ -55,13 +72,23 @@ let humanScore = 0;
 
 let computerScore = 0;
 
-let humanChoice = null;
-
 const choices = document.querySelectorAll('.choice')
+const humanTally = document.querySelector('.human-score')
+const computerTally = document.querySelector('.computer-score')
 
 choices.forEach(choice => {
-    choice.addEventListener('click', function() {
-        humanChoice = this.textContent;
+    choice.addEventListener('click', function () {
+        const humanChoice = this.textContent;
         playRound(getComputerChoice(), humanChoice);
+        humanTally.textContent = humanScore;
+        computerTally.textContent = computerScore;
+        if (humanScore == 5) {
+            alert(`the human won!`)
+        }
+        else if (computerScore == 5) {
+            alert('skynet wins the day!')
+        }
     });
 });
+
+
