@@ -1,0 +1,21 @@
+.choice-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    gap: 15px;
+}
+
+.score-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+}
+
+table, 
+th, 
+td, 
+tr {
+    border: 1px solid black;
+}

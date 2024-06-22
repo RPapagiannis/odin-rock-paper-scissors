@@ -11,10 +11,6 @@ function getComputerChoice() {
     }
 }
 
-function getHumanChoice() {
-    return prompt('Rock, Paper, or Scissors?').toLowerCase();
-}
-
 function playRound(computerChoice, humanChoice) {
     console.log(computerChoice, humanChoice)
     if (computerChoice === 'rock' && humanChoice === 'rock') {
@@ -59,13 +55,13 @@ let humanScore = 0;
 
 let computerScore = 0;
 
-while (humanScore < 5 && computerScore < 5) {
-    playRound(getComputerChoice(), getHumanChoice());
-    console.log(`Computer: ${computerScore} Human: ${humanScore} `)
-    if (humanScore === 5) {
-        console.log('The human wins the game!')
-    }
-    else if (computerScore === 5) {
-        console.log('The computer wins the game!')
-    }
-}
+let humanChoice = null;
+
+const choices = document.querySelectorAll('.choice')
+
+choices.forEach(choice => {
+    choice.addEventListener('click', function() {
+        humanChoice = this.textContent;
+        playRound(getComputerChoice(), humanChoice);
+    });
+});
